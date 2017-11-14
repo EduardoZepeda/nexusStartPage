@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Nexus</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styling.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>The Nexus</h1>
+    <!-- Search bar, redirects to google -->
+    <form action="https://google.com/search?" method="get">
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Search">
+      </div>
+    </form>
+    <!-- End of search bar  -->
+
+    <!-- Open the modal to edit websites -->
+    <span data-toggle="modal" data-target="#AddWebsiteModal" title="Add a website">
+      <span class="glyphicon glyphicon-plus"></span></span>
+    <span data-toggle="modal" data-target="#DeleteWebsitesModal" title="Delete all websites">
+      <span class="glyphicon glyphicon-trash borrarTodo"></span></span>
+
+    <!-- Individual model's Backbone template -->
+    <script type="text/template" id="UrlTemplate">
+      <div class="wrapperUrl">
+        <p>
+          <a href="<%= url %>" target="_blank">
+            <%= name %>
+          </a>
+          <!-- Icons to edit and delete only visibles on hover, see scripts.js -->
+          <span style="display: none" class="glyphicon glyphicon-pencil" title="Click to edit">
+            </span> <span style="display: none" class="glyphicon glyphicon-minus-sign" title="Double click to delete"> </span>
+        </p>
+      </div>
+    </script>
+    <!-- End of backbone's template -->
+
+    <!-- Edition form -->
+    <script type="text/template" id="formularioEdicion">
+      <div class="EditForm">
+        <label for="EditFormName">Name:</label>
+        <div class="form-group">
+          <input type="text" class="editName form-control" id="EditFormName" value="<%= name %>">
+        </div>
+        <label for="EditFormURL">URL:</label>
+        <div class="form-group">
+          <input type="text" class="editURL form-control" id="EditFormURL" value="<%= url %>">
+        </div>
+        <label for="Sections">Section:</label>
+        <select class="form-control" id="editSections">
+          <!-- This section will be completed with javascript using section javascript variable, see script.js -->
+        </select>
+        <p></p>
+        <button class="btn btn-primary editModel">Save</button>
+        <button class="btn btn-warning closeEdit">Close</button>
+      </div>
+    </script>
+    <!-- End of edit form -->
+
+    <div class="UrlList"></div>
+
+    <!-- Modal to add websites -->
+    <div id="AddWebsiteModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="modal-title">Add a Website</h3>
+          </div>
+          <div class="modal-body formulario">
+            <!-- Form to edit websites -->
+            <form id="formAgregarURL">
+              <fieldset>
+                <div class="form-group">
+                  <label for="name">Name:</label><span id="ErrorName"></span>
+                  <input type="text" class="form-control" id="name" pattern="[a-z]{1,15}" placeholder="Site's name">
+                </div>
+                <div class="form-group">
+                  <label for="url">URL:</label><span id="errorUrl"></span>
+                  <input type="text" class="form-control" id="url" placeholder="https://example.org">
+                </div>
+                <div class="form-group">
+                  <label for="Sections">Section:</label>
+                  <select class="form-control" id="sections">
+                      <!-- This section will be automatically completed using javascript, see script.js -->
+                  </select>
+                </div>
+              </fieldset>
+            </form>
+            <!-- End of form-->
+          </div>
+          <div class="modal-footer">
+            <span class="successMsg"></span>
+            <button type="button" class="btn btn-primary saveUrl">Add </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of modal -->
+
+    <!-- Modal to delete all websites -->
+    <div id="DeleteWebsitesModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="modal-title">Delete all websites</h3>
+          </div>
+          <div class="modal-body">
+            <p>Clicking the button will delete all your saved websites. Are you sure?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger DeleteWebsites" data-dismiss="modal">Yes, delete all my saved websites</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of modal -->
+
+  </div>
+  <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+  <script src="js/underscore-min.js" type="text/javascript"></script>
+  <script src="js/backbone-min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="js/sections.js" type="text/javascript"></script>
+  <script src="js/scripts.js" type="text/javascript"></script>
+</body>
+
+</html>

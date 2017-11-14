@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Glacial';
+  src: url('../fonts/GlacialIndifference-Regular.otf');
+}
+
+h1{
+  text-align: center;
+}
+
+
+body{
+  font-family: Glacial;
+  font-size: 1.8em;
+  background-color: #191919;
+  color: #fff;
+}
+
+a, a:hover, a:visited{
+  text-decoration: none;
+  color: #3d92db;
+}
+
+/* Modal */
+.modal-content{
+  background-color: #16181a;
+  color: #fff;
+  font-family: Glacial;
+}
+
+/* Form Success Messages */
+.successMsg{
+  float:left;
+  color: #00d110;
+}
+
+/* Form Error Messages */
+#ErrorName, #errorUrl{
+  color: #FF0000;
+}
