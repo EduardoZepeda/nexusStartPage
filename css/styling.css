@@ -1,15 +1,19 @@
 @font-face {
-  font-family: 'Glacial';
+  font-family: 'GlacialIndifference';
   src: url('../fonts/GlacialIndifference-Regular.otf');
+}
+
+@font-face {
+  font-family: 'OxygenBold';
+  src: url('../fonts/Oxygen-Bold.otf');
 }
 
 h1{
   text-align: center;
 }
 
-
 body{
-  font-family: Glacial;
+  font-family: GlacialIndifference;
   font-size: 1.8em;
   background-color: #191919;
   color: #fff;
@@ -24,7 +28,7 @@ a, a:hover, a:visited{
 .modal-content{
   background-color: #16181a;
   color: #fff;
-  font-family: Glacial;
+  font-family: GlacialIndifference;
 }
 
 /* Form Success Messages */
@@ -36,4 +40,14 @@ a, a:hover, a:visited{
 /* Form Error Messages */
 #ErrorName, #errorUrl{
   color: #FF0000;
+}
+
+.box h3{
+  font-family: OxygenBold;
+  margin-bottom: 0.6em;
+  font-size: 1.2em;
+}
+
+.url{
+    padding-left: 0.6em;
 }

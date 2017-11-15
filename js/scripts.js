@@ -141,7 +141,7 @@ var UrlListView = Backbone.View.extend({
           self.$el.append('<div class="row"></div>');
         }
         //If it doesn't, add the respective section at the end and then append the model to it
-        $('.row:last-child').append(`<div class="col-sm-3"><div class="box" id="${sitio.get('section')}"><h3>#${sitio.get('section')}</h3></div></div>`);
+        $('.row:last-child').append(`<div class="col-sm-3"><div class="box" id="${sitio.get('section')}"><h3>${sitio.get('section')}</h3></div></div>`);
         counter += 1;
         $('#' + sitio.get('section')).append(new vistaURL({ //Render the respective model and append it to its section
           model: sitio
