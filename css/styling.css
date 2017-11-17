@@ -4,8 +4,8 @@
 }
 
 @font-face {
-  font-family: 'OxygenBold';
-  src: url('../fonts/Oxygen-Bold.otf');
+  font-family: 'CooperHewittMedium';
+  src: url('../fonts/CooperHewitt-Medium.otf');
 }
 
 h1{
@@ -43,7 +43,7 @@ a, a:hover, a:visited{
 }
 
 .box h3{
-  font-family: OxygenBold;
+  font-family: CooperHewittMedium;
   margin-bottom: 0.6em;
   font-size: 1em;
 }

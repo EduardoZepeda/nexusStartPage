@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Nexus</title>
+  <title>The Nexus</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styling.css">
 </head>
@@ -19,11 +19,58 @@
     </form>
     <!-- End of search bar  -->
 
-    <!-- Open the modal to edit websites -->
-    <span data-toggle="modal" data-target="#AddWebsiteModal" title="Add a website">
-      <span class="glyphicon glyphicon-plus"></span></span>
-    <span data-toggle="modal" data-target="#DeleteWebsitesModal" title="Delete all websites">
-      <span class="glyphicon glyphicon-trash borrarTodo"></span></span>
+      <script type = "text/template" id="addFormTemplate">
+      <!-- Modal to add websites -->
+
+      <!-- Open the modal to edit websites -->
+      <span data-toggle="modal" data-target="#AddWebsiteModal" title="Add a website">
+        <span class="glyphicon glyphicon-plus"></span></span>
+      <span data-toggle="modal" data-target="#DeleteWebsitesModal" title="Delete all websites">
+        <span class="glyphicon glyphicon-trash"></span></span>
+      <div id="AddWebsiteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title">Add a Website</h3>
+            </div>
+            <div class="modal-body formulario">
+              <!-- Form to add websites -->
+              <form id="formAgregarURL">
+                <fieldset>
+                  <div class="form-group">
+                    <label for="name">Name:</label><span id="ErrorName"></span>
+                    <input type="text" class="form-control" id="name"  placeholder="Site's name">
+                  </div>
+                  <div class="form-group">
+                    <label for="url">URL:</label><span id="errorUrl"></span>
+                    <input type="text" class="form-control" id="url" placeholder="https://example.org">
+                  </div>
+                  <div class="form-group">
+                    <label for="Sections">Section:</label>
+                    <select class="form-control" id="sections">
+                        <!-- This section will be automatically completed using javascript, see script.js -->
+                    </select>
+                  </div>
+                </fieldset>
+              </form>
+              <!-- End of form-->
+            </div>
+            <div class="modal-footer">
+              <span class="successMsg"></span>
+              <button type="button" class="btn btn-primary saveUrl">Add </button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of modal -->
+    </script>
+
+
+
 
     <!-- Individual model's Backbone template -->
     <script type="text/template" id="UrlTemplate">
@@ -62,50 +109,8 @@
     </script>
     <!-- End of edit form -->
 
+    <div class="addFormRendered"></div>
     <div class="UrlList"></div>
-
-    <!-- Modal to add websites -->
-    <div id="AddWebsiteModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h3 class="modal-title">Add a Website</h3>
-          </div>
-          <div class="modal-body formulario">
-            <!-- Form to edit websites -->
-            <form id="formAgregarURL">
-              <fieldset>
-                <div class="form-group">
-                  <label for="name">Name:</label><span id="ErrorName"></span>
-                  <input type="text" class="form-control" id="name" pattern="[a-z]{1,15}" placeholder="Site's name">
-                </div>
-                <div class="form-group">
-                  <label for="url">URL:</label><span id="errorUrl"></span>
-                  <input type="text" class="form-control" id="url" placeholder="https://example.org">
-                </div>
-                <div class="form-group">
-                  <label for="Sections">Section:</label>
-                  <select class="form-control" id="sections">
-                      <!-- This section will be automatically completed using javascript, see script.js -->
-                  </select>
-                </div>
-              </fieldset>
-            </form>
-            <!-- End of form-->
-          </div>
-          <div class="modal-footer">
-            <span class="successMsg"></span>
-            <button type="button" class="btn btn-primary saveUrl">Add </button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End of modal -->
 
     <!-- Modal to delete all websites -->
     <div id="DeleteWebsitesModal" class="modal fade" role="dialog">
@@ -135,6 +140,9 @@
   <script src="js/backbone-min.js" type="text/javascript"></script>
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
   <script src="js/sections.js" type="text/javascript"></script>
+  <script src="js/models/models.js" type="text/javascript"></script>
+  <script src="js/collections/collections.js" type="text/javascript"></script>
+  <script src="js/views/views.js" type="text/javascript"></script>
   <script src="js/scripts.js" type="text/javascript"></script>
 </body>
 
