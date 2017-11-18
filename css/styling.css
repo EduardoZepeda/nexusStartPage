@@ -48,12 +48,12 @@ a, a:hover, a:visited{
   font-size: 1em;
 }
 
-.url{
+.url p{
     padding-left: 0.6em;
     -webkit-transition: padding-left 0.3s; /* Safari */
     transition: padding-left 0.3s;
 }
 
-.url:hover{
+.url p:hover{
     padding-left: 1em;
 }
