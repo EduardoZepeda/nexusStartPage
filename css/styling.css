@@ -50,4 +50,10 @@ a, a:hover, a:visited{
 
 .url{
     padding-left: 0.6em;
+    -webkit-transition: padding-left 0.3s; /* Safari */
+    transition: padding-left 0.3s;
+}
+
+.url:hover{
+    padding-left: 1em;
 }

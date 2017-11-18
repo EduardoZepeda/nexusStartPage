@@ -142,8 +142,8 @@ var AddForm = Backbone.View.extend({
 
   emptyAddSiteForm: function(){
     $("#ErrorName").text("");
-    $('#name').text("");
-    $('#url').text("");
+    $('#name').val("");
+    $('#url').val("");
     $("#errorUrl").text("");
     $('.successMsg').text("");
   },
