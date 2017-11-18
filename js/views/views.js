@@ -149,9 +149,10 @@ var AddForm = Backbone.View.extend({
   },
 
 
-  addHttpsText: function(){
-    if($('#url').val()==''){
-    $('#url').val('https://')
+  addHttpsText: function(e){
+    //e.currentTarget refers to the element that fired the event
+    if($(e.currentTarget).val()==''){
+    $(e.currentTarget).val('https://')
     }
   },
 
