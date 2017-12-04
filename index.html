@@ -24,7 +24,7 @@
 
       <!-- Open the modal to edit websites -->
       <span data-toggle="modal" data-target="#AddWebsiteModal" title="Add a website">
-        <span class="glyphicon glyphicon-plus"></span></span>
+        <span class="glyphicon glyphicon-plus addSite"></span></span>
       <span data-toggle="modal" data-target="#DeleteWebsitesModal" title="Delete all websites">
         <span class="glyphicon glyphicon-trash"></span></span>
       <div id="AddWebsiteModal" class="modal fade" role="dialog">
@@ -78,8 +78,8 @@
             <%= name %>
           </a>
           <!-- Icons to edit and delete only visibles on hover, see scripts.js -->
-          <span style="display: none" class="glyphicon glyphicon-pencil" title="Click to edit">
-            </span> <span style="display: none" class="glyphicon glyphicon-minus-sign" title="Double click to delete"> </span>
+          <span style="display: none" class="glyphicon glyphicon-pencil editSite" title="Click to edit">
+            </span> <span style="display: none" class="glyphicon glyphicon-minus-sign deleteSite" title="Double click to delete"> </span>
         </p>
       </div>
     </script>
@@ -124,7 +124,7 @@
             <p>Clicking the button will delete all your saved websites. Are you sure?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger DeleteWebsites" data-dismiss="modal">Yes, delete all my saved websites</button>
+            <button type="button" class="btn btn-danger deleteAllSites" data-dismiss="modal">Yes, delete all my saved websites</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>

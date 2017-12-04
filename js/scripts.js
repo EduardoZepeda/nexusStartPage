@@ -8,7 +8,7 @@ $(document).ready(function() {
   }
   list.add(loadedList);
 
-  $('.DeleteWebsites').click(function(){
+  $('.deleteAllSites').click(function(){
     //Delete all websites from localStorage
     list.reset();
     websitesView.render();

@@ -13,17 +13,19 @@ var vistaURL = Backbone.View.extend({
   events: {
     'mouseenter .wrapperUrl': 'showModifiyIcons',
     'mouseleave .wrapperUrl': 'hideModifiyIcons',
-    'click .glyphicon-pencil': 'edit',
-    'dblclick .glyphicon-minus-sign': 'delete'
+    'click .editSite': 'edit',
+    'dblclick .deleteSite': 'delete'
 
   },
   //Show edit and delete glyphicons
   showModifiyIcons: function() {
-    this.$el.find('span').show();
+    this.$el.find('.editSite').show();
+    this.$el.find('.deleteSite').show();
   },
   //Hide edit and delete glyphicons
   hideModifiyIcons: function() {
-    this.$el.find('span').hide();
+    this.$el.find('.editSite').hide();
+    this.$el.find('.deleteSite').hide();
   },
 
   edit: function() {
@@ -128,7 +130,7 @@ var AddForm = Backbone.View.extend({
   },
   events:{
     'click .saveUrl': 'saveSite',
-    'click .glyphicon-plus': 'emptyAddSiteForm',
+    'click .addSite': 'emptyAddSiteForm',
     'focus #url': 'addHttpsText'
   },
   render: function(){
