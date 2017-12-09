@@ -143,6 +143,7 @@ var AddForm = Backbone.View.extend({
   },
 
   emptyAddSiteForm: function(){
+    $('#formAgregarURL fieldset').removeAttr('disabled'); 
     $("#ErrorName").text("");
     $('#name').val("");
     $('#url').val("");
