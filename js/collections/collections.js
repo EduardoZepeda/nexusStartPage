@@ -1,4 +1,4 @@
-//Start Backbone's sollection
+// Start Backbone's sollection
 var collecttionUrlList = Backbone.Collection.extend({})
 
-var list = new collecttionUrlList();
+var list = new collecttionUrlList()
