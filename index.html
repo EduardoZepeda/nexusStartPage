@@ -27,6 +27,13 @@
         <span class="glyphicon glyphicon-plus addSite"></span></span>
       <span data-toggle="modal" data-target="#DeleteWebsitesModal" title="Delete all websites">
         <span class="glyphicon glyphicon-trash"></span></span>
+      <span title="Save all sites">
+        <span class="glyphicon glyphicon-save-file downloadSites"></span></span>
+      <span title="Upload saved sites">
+        <span class="glyphicon glyphicon-open-file uploadFile"></span></span>
+      <form id="fileForm">
+        <input type="file" id="fileElem" multiple accept=".txt" style="display:none">
+      </form>
       <div id="AddWebsiteModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
           <!-- Modal content-->
@@ -67,6 +74,29 @@
         </div>
       </div>
       <!-- End of modal -->
+
+    <!-- Modal to delete all websites -->
+    <div id="DeleteWebsitesModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="modal-title">Delete all websites</h3>
+          </div>
+          <div class="modal-body">
+            <p>Clicking the button will delete all your saved websites. Are you sure?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger deleteAllSites" data-dismiss="modal">Yes, delete all my saved websites</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of modal -->
+
     </script>
 
 
@@ -86,7 +116,7 @@
     <!-- End of backbone's template -->
 
     <!-- Edition form -->
-    <script type="text/template" id="formularioEdicion">
+    <script type="text/template" id="editionForm">
       <div class="EditForm">
         <label for="EditFormName">Name:</label>
         <div class="form-group">
@@ -110,27 +140,27 @@
     <div class="addFormRendered"></div>
     <div class="UrlList"></div>
 
-    <!-- Modal to delete all websites -->
-    <div id="DeleteWebsitesModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h3 class="modal-title">Delete all websites</h3>
-          </div>
-          <div class="modal-body">
-            <p>Clicking the button will delete all your saved websites. Are you sure?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger deleteAllSites" data-dismiss="modal">Yes, delete all my saved websites</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+  <!-- Error Modal -->
+  <div class="modal fade" id="errorModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title" id="errorTitle"></h3>
+        </div>
+        <div class="modal-body">
+          <p id="errorText"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
+      
     </div>
-    <!-- End of modal -->
+  </div>
 
   </div>
   <script src="js/libraries/jquery-3.2.1.min.js" type="text/javascript"></script>

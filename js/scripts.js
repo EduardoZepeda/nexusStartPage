@@ -13,12 +13,5 @@ $(document).ready(function () {
     document.getElementsByTagName('body').innerHTML = error.message
   }
   list.add(loadedList)
-  websitesView.startListeningEvents()
-
-  $('.deleteAllSites').click(function () {
-    // Delete all websites from localStorage
-    list.reset()
-    websitesView.render()
-    localStorage.removeItem('websitesList')
-  })
+  websitesView.startListeningEvents() // This prevent firing a change event (and therefore a call to render) for each site loaded
 })

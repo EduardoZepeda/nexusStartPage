@@ -1,5 +1,8 @@
 # NexusStartPage
-A simple startpage with CRUD capabilities based on localStorage. It uses Backbone, Jquery and Bootstrap
+Now with backup and restore functionality added!
+
+A simple startpage with CRUD capabilities based on localStorage. It uses Backbone, Jquery and Bootstrap. 
+
 You can see it working in this [link](https://eduardozepeda.github.io/nexusStartPage/)
 
 ### Activate localStorage

@@ -7,7 +7,7 @@ var vistaURL = Backbone.View.extend({
   initialize: function () {
     this.template = _.template($('#UrlTemplate').html())
     // Secondary template, create edit form
-    this.formulario = _.template($('#formularioEdicion').html())
+    this.formulario = _.template($('#editionForm').html())
   },
 
   events: {
@@ -72,11 +72,12 @@ var vistaURL = Backbone.View.extend({
     this.$el.html(this.template(this.model.toJSON()))
     return this
   }
+
 })
 
 var UrlListView = Backbone.View.extend({
   model: list,
-  el: $('.UrlList'), // The div where all the models will be added
+  el: $('.UrlList'),
   initialize: function () {
     var self = this
   },
@@ -120,7 +121,7 @@ var UrlListView = Backbone.View.extend({
   }
 })
 
-var websitesView = new UrlListView() // Create the Backbone's view
+var websitesView = new UrlListView()
 
 var AddForm = Backbone.View.extend({
   model: list,
@@ -132,8 +133,69 @@ var AddForm = Backbone.View.extend({
   events: {
     'click .saveUrl': 'saveSite',
     'click .addSite': 'emptyAddSiteForm',
-    'focus #url': 'addHttpsText'
+    'focus #url': 'addHttpsText',
+    'click .deleteAllSites': 'deleteAllSites',
+    'click .downloadSites': 'downloadSites',
+    'click .uploadFile': 'uploadFile',
+    'change #fileElem': 'readSingleFile'
   },
+
+  downloadSites: function () {
+    if (this.model.length != 0) {
+      var backupList = JSON.stringify(this.model)
+      var hiddenElement = document.createElement('a')
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(backupList)
+      hiddenElement.target = '_blank'
+      hiddenElement.download = 'sitesBackup.txt'
+      hiddenElement.click()
+    } else {
+      $('#errorTitle').text('There are no sites to backup')
+      $('#errorText').text('You can\'t create a backup of an empty list.')
+      $('#errorModal').modal('toggle')
+    }
+  },
+
+  deleteAllSites: function () {
+    // Delete all websites from localStorage
+    this.model.reset()
+    websitesView.render()
+    localStorage.removeItem('websitesList')
+  },
+
+  uploadFile: function () {
+    var el = document.getElementById('fileElem')
+    if (el) {
+      el.click()
+    }
+  },
+
+  readSingleFile: function (evt) {
+    // Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]
+    var self = this
+    if (f) {
+      var r = new FileReader()
+      r.onload = function (e) {
+	      var contents = e.target.result
+        if (f.type == 'text/plain' && self.model.length == 0) {
+          var newList = JSON.parse(contents)
+          self.model.add(newList)
+          localStorage.setItem('websitesList', JSON.stringify(self.model))
+        } else {
+          $('#errorTitle').text('Error with the file')
+          $('#errorText').text('Please delete all sites before uploading a saved sites file and make sure the uploaded file is a backup file.')
+          $('#errorModal').modal('toggle')
+        }
+      }
+      r.readAsText(f)
+      $('#fileForm').get(0).reset() // Reset the form so if a file with the same name is uploaded it stills triggers a change event
+    } else {
+      $('#errorTitle').text('Failed to load the file')
+      $('#errorText').text('There was an error opening the file.')
+      $('#errorModal').modal('toggle')
+    }
+  },
+
   render: function () {
     this.$el.html('')
     this.$el.html(this.template(this.model.toJSON()))
