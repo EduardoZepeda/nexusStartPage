@@ -8,52 +8,53 @@
   src: url('../fonts/CooperHewitt-Medium.otf');
 }
 
-h1{
+h1 {
   text-align: center;
 }
 
-body{
+body {
   font-family: GlacialIndifference;
   font-size: 1.8em;
   background-color: #191919;
   color: #fff;
 }
 
-a, a:hover, a:visited{
+a, a:hover, a:visited {
   text-decoration: none;
   color: #3d92db;
 }
 
 /* Modal */
-.modal-content{
+.modal-content {
   background-color: #16181a;
   color: #fff;
   font-family: GlacialIndifference;
 }
 
 /* Form Success Messages */
-.successMsg{
-  float:left;
+.successMsg, #successMsgSection {
+  float: left;
   color: #00d110;
 }
 
 /* Form Error Messages */
-#ErrorName, #errorUrl{
+#ErrorName, #errorUrl, #SectionNameError, #errorSection {
   color: #FF0000;
 }
 
-.box h3{
+.box h3 {
   font-family: CooperHewittMedium;
   margin-bottom: 0.6em;
   font-size: 1em;
 }
 
-.url p{
-    padding-left: 0.6em;
-    -webkit-transition: padding-left 0.3s; /* Safari */
-    transition: padding-left 0.3s;
+.url p {
+  padding-left: 0.6em;
+  -webkit-transition: padding-left 0.3s;
+  /* Safari */
+  transition: padding-left 0.3s;
 }
 
-.url p:hover{
-    padding-left: 1em;
+.url p:hover {
+  padding-left: 1em;
 }

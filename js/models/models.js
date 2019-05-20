@@ -1,4 +1,3 @@
-
 var URL = Backbone.Model.extend({
   defaults: {
     name: '',
@@ -6,7 +5,7 @@ var URL = Backbone.Model.extend({
     section: ''
   },
 
-  validate: function (attrs) {
+  validate: function(attrs) {
     var regex = /[$^()\[\]{}|<>]/g
     $('.successMsg').text('') // Delete success msg
     if (attrs.name.length <= 1) {
@@ -27,5 +26,20 @@ var URL = Backbone.Model.extend({
       return 'No $^()[]{}|<> is allowed'
     }
     $('#errorUrl').text('')
+    $('#errorSection').text('')
+  }
+})
+
+var section = Backbone.Model.extend({
+  defaults: {
+    name: ''
+  },
+  validate: function(attrs) {
+    if (attrs.name.length <= 1) {
+      $('#successMsgSection').text('')
+      $('#SectionNameError').text(' *The section name must be longer than one character. ')
+      return 'The section name must be longer than one character'
+    }
+    $('#SectionNameError').text('')
   }
 })
