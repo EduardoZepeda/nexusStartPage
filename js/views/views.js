@@ -170,8 +170,12 @@ var AddForm = Backbone.View.extend({
 
   deleteAllSites: function() {
     this.model.reset()
+    sectionss.reset()
     websitesView.render()
+    sectionFormView.render()
+    sectionFormView.cleanMessages()
     localStorage.removeItem('websitesList')
+    localStorage.removeItem('sectionList')
   },
 
   uploadFile: function() {
