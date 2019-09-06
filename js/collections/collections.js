@@ -1,8 +1,3 @@
-// Start Backbone's sollection
-var collecttionUrlList = Backbone.Collection.extend({})
+var collecttionOfSectionWithUrls = Backbone.Collection.extend({model: section})
 
-var list = new collecttionUrlList()
-
-var collectionSectionList = Backbone.Collection.extend({})
-
-var sectionss = new collectionSectionList()
+var urlCollection = new collecttionOfSectionWithUrls()

@@ -1,9 +1,7 @@
 try {
-  // Try to load the localStorage item, show any error on screen
-  var loadedSectionss = JSON.parse(localStorage.getItem('sectionList')) || []
-  var loadedList = JSON.parse(localStorage.getItem('websitesList'))
+  var sitesInLocalStorage = JSON.parse(localStorage.getItem('listOfSectionAndSites')) || []
+  urlCollection.add(sitesInLocalStorage)
+
 } catch (error) {
   document.getElementsByTagName('body').innerHTML = error.message
 }
-sectionss.add(loadedSectionss)
-list.add(loadedList)

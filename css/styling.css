@@ -31,17 +31,6 @@ a, a:hover, a:visited {
   font-family: GlacialIndifference;
 }
 
-/* Form Success Messages */
-.successMsg, #successMsgSection {
-  float: left;
-  color: #00d110;
-}
-
-/* Form Error Messages */
-#ErrorName, #errorUrl, #SectionNameError, #errorSection {
-  color: #FF0000;
-}
-
 .box h3 {
   font-family: CooperHewittMedium;
   margin-bottom: 0.6em;
@@ -57,4 +46,38 @@ a, a:hover, a:visited {
 
 .url p:hover {
   padding-left: 1em;
+}
+
+.error-input, .error-input:focus {
+  background-color: #ffcccc;
+  border: 1px solid red;
+}
+
+.EditForm, .sectionEditForm {
+  border: 1px solid #3a3a3a;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+#renderedSites {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.section {
+  padding: 0px 25px;
+  width: 250px;
+}
+
+.warningMsg, .badge-warning {
+  font-size: 15px;
+  background-color: #ffbd39;
+  color: #25292d;
+}
+
+.successMsg, .badge-success {
+  font-size: 15px;
+  background-color: #1ca550;
+  color: #FFFFFF;
 }

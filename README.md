@@ -1,7 +1,7 @@
 # NexusStartPage
-Now with backup and restore functionality added!
+Now with backup and restore functionality added! 
 
-A simple startpage with CRUD capabilities based on localStorage. It uses Backbone, Jquery and Bootstrap. 
+A simple and lightweight startpage with CRUD capabilities based on localStorage. It uses Backbone, Jquery and Bootstrap. 
 
 You can see it working in this [link](https://eduardozepeda.github.io/nexusStartPage/)
 
@@ -23,4 +23,11 @@ To add a section just click on the first icon counting from the left.
 There are a lot of things I would love to improve. Any contribution will be appreciated.
 
 - [ ] Create a better design
+- [x] Refactor code
 - [x] Add or remove sections directly on the website
+
+### Last changes
+
+Version 2.0
+
+All the code has been refactored, it's now cleaner and easier to read and mantain than its previous version. Because of the last the code is not compatible with the last version anymore.

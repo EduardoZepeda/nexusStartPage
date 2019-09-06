@@ -14,195 +14,79 @@
     <!-- Search bar, redirects to google -->
     <form action="https://google.com/search?" method="get">
       <div class="form-group">
-        <input type="text" name="q" class="form-control" placeholder="Search">
+        <input type="text" name="q" class="form-control" required placeholder="Search" required>
       </div>
     </form>
     <!-- End of search bar  -->
 
-    <script type="text/template" id="addFormTemplate">
-      <!-- Modal to add websites -->
-
-      <!-- Open the modal to edit websites -->
-      <span data-toggle="modal" data-target="#AddSectionModal" title="Add a section">
-        <span class="glyphicon glyphicon-th-list addSectionModal"></span></span>
-      <span data-toggle="modal" data-target="#AddWebsiteModal" title="Add a website">
-        <span class="glyphicon glyphicon-plus addSite"></span></span>
-      <span data-toggle="modal" data-target="#DeleteWebsitesModal" title="Delete all websites">
-        <span class="glyphicon glyphicon-trash"></span></span>
-      <span title="Save all sites">
-        <span class="glyphicon glyphicon-save-file downloadSites"></span></span>
-      <span title="Upload saved sites">
-        <span class="glyphicon glyphicon-open-file uploadFile"></span></span>
-      <form id="fileForm">
-        <input type="file" id="fileElem" multiple accept=".txt" style="display:none">
-      </form>
-      <div id="AddWebsiteModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3 class="modal-title">Add a Website</h3>
-            </div>
-            <div class="modal-body formulario">
-              <!-- Form to add websites -->
-              <form id="AddUrlForm">
-                <fieldset>
-                  <div class="form-group">
-                    <label for="name">Name:</label><span id="ErrorName"></span>
-                    <input type="text" class="form-control" id="name"  placeholder="Site's name">
-                  </div>
-                  <div class="form-group">
-                    <label for="url">URL:</label><span id="errorUrl"></span>
-                    <input type="text" class="form-control" id="url" placeholder="https://example.org">
-                  </div>
-                  <div class="form-group">
-                    <label for="Sections">Section:</label><span id="errorSection"></span>
-                    <select class="form-control" id="sections">
-                        <!-- This section will be automatically completed using javascript, see script.js -->
-                    </select>
-                  </div>
-                </fieldset>
-              </form>
-              <!-- End of form-->
-            </div>
-            <div class="modal-footer">
-              <span class="successMsg"></span>
-              <button type="button" class="btn btn-primary saveUrl">Add </button>
-              <button type="button" class="btn btn-default AddWebsiteModalClose" data-dismiss="modal">Close</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End of modal -->
-
-    <!-- Modal to delete all websites -->
-    <div id="DeleteWebsitesModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h3 class="modal-title">Delete all websites</h3>
-          </div>
-          <div class="modal-body">
-            <p>Clicking the button will delete all your saved websites and sections. Are you sure?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger deleteAllSites" data-dismiss="modal">Yes, delete all my saved websites</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End of modal -->
-
-    </script>
-
-    <!-- Modal to add sections -->
-    <div id="AddSectionModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h3 class="modal-title">Add a section</h3>
-          </div>
-          <div class="modal-body">
-            <!-- Form to add sections -->
-            <form id="AddSectionForm">
-              <fieldset>
-                <div class="form-group">
-                  <label for="name">Section name</label><span id="SectionNameError"></span><span class="SectionNameError"></span>
-                  <span class="SectionEmptyWarning"></span>
-                  <input type="text" class="form-control" id="sectionName" placeholder="Section name">
-                </div>
-              </fieldset>
-            </form>
-            <div id="renderedSections"></div>
-            <!-- End of form-->
-          </div>
-          <div class="modal-footer">
-            <span id="successMsgSection"></span>
-            <button type="button" class="btn btn-primary addSection">Add Section</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End of modal -->
-
-    <!-- Add Section Form -->
-    <script type="text/template" id="AddSectionTemplate">
+    <!-- Individual section Backbone template -->
+    <script type="text/template" id="sectionTemplate">
       <div class="wrapperSection">
-        <p>
+        <h2>
             <%= name %>
           <!-- Icons to edit and delete only visibles on hover, see scripts.js -->
-          <span style="display: none" class="glyphicon glyphicon-pencil editSection" title="Click to edit">
-          </span> <span style="display: none" class="glyphicon glyphicon-minus-sign deleteSection" title="Double click to delete"> </span>
-        </p>
+          <small><span style="display: none" class="glyphicon glyphicon-pencil editSection" title="Click to edit"> </span> </small>
+            <small><span style="display: none" class="glyphicon glyphicon-minus-sign deleteSection" title="Double click to delete"> </span>  </small>
+        </h2>
       </div>
     </script>
+    <!-- End of section Backbone template -->
 
-
-    <!-- Individual model's Backbone template -->
-    <script type="text/template" id="UrlTemplate">
+    <!-- Individual url Backbone template -->
+    <script type="text/template" id="urlTemplate">
       <div class="wrapperUrl">
         <p>
-          <a href="<%= url %>" target="_blank" rel="noopener">
+          <a href="<%= url %>" id='<%= reference %>' target="_blank" rel="noopener">
             <%= name %>
           </a>
           <!-- Icons to edit and delete only visibles on hover, see scripts.js -->
-          <span style="display: none" class="glyphicon glyphicon-pencil editSite" title="Click to edit">
-            </span> <span style="display: none" class="glyphicon glyphicon-minus-sign deleteSite" title="Double click to delete"> </span>
+          <span style="display: none" class="glyphicon glyphicon-pencil editSite" title="Click to edit"></span>
+          <span style="display: none" class="glyphicon glyphicon-minus-sign deleteUrl" title="Double click to delete"> </span>
         </p>
       </div>
     </script>
-    <!-- End of backbone's template -->
+    <!-- End of url Backbone template -->
 
     <!-- Site edition form -->
     <script type="text/template" id="editionForm">
       <div class="EditForm">
         <label for="EditFormName">Name:</label>
         <div class="form-group">
-          <input type="text" class="editName form-control" id="EditFormName" value="<%= name %>">
+          <input type="text" class="editName form-control" id="EditFormName" value="<%= name %>" required>
         </div>
-        <label for="EditFormURL">URL:</label>
         <div class="form-group">
-          <input type="text" class="editURL form-control" id="EditFormURL" value="<%= url %>">
+          <label for="basic-url">URL:</label>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon3">https://</span>
+            <input type="text" class="editURL form-control" id="EditFormURL" value="<%= url %>" aria-describedby="basic-addon3">
+          </div>
         </div>
         <label for="Sections">Section:</label>
-        <select class="form-control" id="editSections">
+        <select class="form-control" id="availableSections">
           <!-- This section will be completed with javascript using section javascript variable, see script.js -->
         </select>
-        <button class="btn btn-primary editModel">Save</button>
+        <p></p>
+        <button class="btn btn-primary updateUrl">Save</button>
         <button class="btn btn-warning closeEdit">Close</button>
+        <div class="successMsgEditUrl badge badge-success"></div>
+        <div class="warningMsgEditUrl badge badge-warning"></div>
       </div>
     </script>
     <!-- End of site edit form -->
-
 
     <!-- Section edition form -->
     <script type="text/template" id="sectionEditionForm">
       <div class="sectionEditForm">
         <label for="EditSectionFormName">New section name:</label>
         <div class="form-group">
-          <input type="text" class="editSectionName form-control" id="EditFormName" value="<%= name %>">
+          <input type="text" class="editSectionName form-control" id="EditSectionNameForm" value="<%= name %>" required>
         </div>
         <button class="btn btn-primary editSectionModel">Save</button>
         <button class="btn btn-warning closeSectionEdit">Close</button>
+        <div class="warningMsgEditSection badge badge-warning"></div>
       </div>
     </script>
     <!-- End of Section edit form -->
-
-    <div class="addFormRendered"></div>
-    <div class="UrlList"></div>
-    <div class="addSectionForm"></div>
-
-
 
     <!-- Error Modal -->
     <div class="modal fade" id="errorModal" role="dialog">
@@ -223,6 +107,130 @@
         </div>
 
       </div>
+    </div>
+    <!-- End Error Modal -->
+
+    <div id="mainApp">
+      <!-- Icons  -->
+      <span data-toggle="modal" data-target="#AddSectionModal" title="Add a section">
+        <span class="glyphicon glyphicon-th-list addSectionModal"></span></span>
+      <span data-toggle="modal" data-target="#AddUrlModal" title="Add a website">
+        <span class="glyphicon glyphicon-plus addUrl"></span></span>
+      <span data-toggle="modal" data-target="#DeleteWebsitesModal" title="Delete all websites">
+        <span class="glyphicon glyphicon-trash"></span></span>
+      <span title="Save all sites">
+        <span class="glyphicon glyphicon-save-file downloadSites"></span></span>
+      <span title="Upload saved sites">
+        <span class="glyphicon glyphicon-open-file uploadFile"></span></span>
+      <form id="fileForm">
+        <input type="file" id="fileElem" multiple accept=".txt" style="display:none">
+      </form>
+      <!-- End Icons  -->
+
+      <!-- Modal to add url -->
+      <div id="AddUrlModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title">Add a Website</h3>
+            </div>
+            <div class="modal-body formulario">
+              <!-- Form to add url -->
+              <form id="AddUrlForm">
+                <fieldset>
+                  <div class="form-group">
+                    <label for="name">Name:</label><span id="ErrorName"></span>
+                    <input type="text" class="form-control" id="name" placeholder="Site's name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="basic-url">URL:</label>
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon3">https://</span>
+                      <input type="text" class="form-control" id="url" aria-describedby="basic-addon3">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="Sections">Section:</label><span id="errorSection"></span>
+                    <select class="form-control" id="sections">
+                      <!-- This section will be automatically completed -->
+                    </select>
+                  </div>
+                </fieldset>
+              </form>
+              <!-- End of form-->
+            </div>
+            <div class="modal-footer">
+              <span class="successMsg badge badge-success"></span>
+              <span class="warningMsg badge badge-warning"></span>
+              <button type="button" class="btn btn-primary createUrl">Add </button>
+              <button type="button" class="btn btn-default AddUrlModalClose" data-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of modal to add url -->
+
+      <!-- Modal to add sections -->
+      <div id="AddSectionModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title">Add a section</h3>
+            </div>
+            <div class="modal-body">
+              <!-- Form to add sections -->
+              <form id="AddSectionForm">
+                <fieldset>
+                  <div class="form-group">
+                    <label for="name">Section name</label><span id="SectionNameError"></span><span class="SectionNameError"></span>
+                    <span class="SectionEmptyWarning badge badge-warning"></span>
+                    <input type="text" class="form-control" id="sectionName" placeholder="Section name" required>
+                  </div>
+                </fieldset>
+              </form>
+              <!-- End of form-->
+              <div id="renderedSections"></div>
+            </div>
+            <div class="modal-footer">
+              <span class="successMsgSection badge badge-success"></span>
+              <span class="warningMsgSection badge badge-warning"></span>
+              <button type="button" class="btn btn-primary addSection">Add Section</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of modal to add sections -->
+
+      <!-- Modal to delete all websites -->
+      <div id="DeleteWebsitesModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title">Delete all websites</h3>
+            </div>
+            <div class="modal-body">
+              <p>Clicking the button will delete all your saved websites and sections. Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger deleteAllSites" data-dismiss="modal">Yes, delete all my saved websites</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of modal to delete all websites -->
+
+      <div id="renderedSites"></div>
     </div>
 
   </div>
