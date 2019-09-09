@@ -277,6 +277,7 @@ var sitesView = Backbone.View.extend({
     if (urlCollection.length < 1) {
       this.showMessage(' *Please add at least one section to start adding sites.', '.SectionEmptyWarning')
       $('#AddSectionModal').modal('toggle')
+      this.renderSectionListModal()
     } else {
       $('#AddUrlModal').modal('toggle')
       this.renderSectionOptions()
