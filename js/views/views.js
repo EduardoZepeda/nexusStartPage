@@ -248,7 +248,7 @@ var sitesView = Backbone.View.extend({
   handleUrlForm: function(event) {
     if (this.validateUrlForm()) {
       this.createUrl()
-      this.showMessage("Section added!", '.successMsg')
+      this.showMessage("Website added!", '.successMsg')
     } else {
       this.showMessage("Please fill every field", '.warningMsg')
     }
